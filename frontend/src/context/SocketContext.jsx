@@ -20,6 +20,7 @@ export const SocketContextProvider = ({ children }) => {
 					userId: authUser._id,
 				},
 			});
+			console.log(socket.connected)
 
 			setSocket(socket);
 
