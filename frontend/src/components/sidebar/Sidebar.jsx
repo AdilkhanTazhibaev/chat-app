@@ -1,14 +1,20 @@
 import Conversations from "./Conversations";
 import LogoutButton from "./LogoutButton";
 import SearchInput from "./SearchInput";
+import {useAuthContext} from "../../context/AuthContext.jsx";
 
 const Sidebar = () => {
+	const { authUser } = useAuthContext();
+	console.log(authUser)
 	return (
 		<div className='border-r border-slate-500 p-4 flex flex-col'>
 			<SearchInput />
 			<div className='divider px-3'></div>
 			<Conversations />
-			<LogoutButton />
+			<div className="flex justify-between">
+				<LogoutButton />
+				{authUser.fullName}
+			</div>
 		</div>
 	);
 };
