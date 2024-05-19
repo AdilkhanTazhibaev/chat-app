@@ -19,6 +19,7 @@ export const getReceiverSocketId = (receiverId) => {
 const userSocketMap = {}; // {userId: socketId}
 
 io.on("connection", (socket) => {
+	console.log('sldk')
 	console.log("a user connected", socket.id);
 
 	const userId = socket.handshake.query.userId;

@@ -7,6 +7,7 @@ const connectToMongoDB = async () => {
 	} catch (error) {
 		console.log("Error connecting to MongoDB", error.message);
 	}
+	console.log(process.env.MONGO_DB_URI)
 };
 
 export default connectToMongoDB;

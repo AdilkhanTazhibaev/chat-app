@@ -7,13 +7,13 @@ export const signup = async (req, res) => {
 		const { fullName, username, password, confirmPassword, gender } = req.body;
 
 		if (password !== confirmPassword) {
-			return res.status(400).json({ error: "Passwords don't match" });
+			return res.status(400).json({ error: "Пароли не совпадают" });
 		}
 
 		const user = await User.findOne({ username });
 
 		if (user) {
-			return res.status(400).json({ error: "Username already exists" });
+			return res.status(400).json({ error: "Имя пользователя уже занято" });
 		}
 
 		// HASH PASSWORD HERE
@@ -45,11 +45,11 @@ export const signup = async (req, res) => {
 				profilePic: newUser.profilePic,
 			});
 		} else {
-			res.status(400).json({ error: "Invalid user data" });
+			res.status(400).json({ error: "Неверные данные пользователя" });
 		}
 	} catch (error) {
-		console.log("Error in signup controller", error.message);
-		res.status(500).json({ error: "Internal Server Error" });
+		console.log("Ошибка в контроллере регистрации", error.message);
+		res.status(500).json({ error: "Внутренняя ошибка сервера" });
 	}
 };
 
@@ -60,7 +60,7 @@ export const login = async (req, res) => {
 		const isPasswordCorrect = await bcrypt.compare(password, user?.password || "");
 
 		if (!user || !isPasswordCorrect) {
-			return res.status(400).json({ error: "Invalid username or password" });
+			return res.status(400).json({ error: "неправильное имя пользователя или пароль" });
 		}
 
 		generateTokenAndSetCookie(user._id, res);
@@ -72,17 +72,17 @@ export const login = async (req, res) => {
 			profilePic: user.profilePic,
 		});
 	} catch (error) {
-		console.log("Error in login controller", error.message);
-		res.status(500).json({ error: "Internal Server Error" });
+		console.log("Ошибка в контроллере входа", error.message);
+		res.status(500).json({ error: "Внутренняя ошибка сервера" });
 	}
 };
 
 export const logout = (req, res) => {
 	try {
 		res.cookie("jwt", "", { maxAge: 0 });
-		res.status(200).json({ message: "Logged out successfully" });
+		res.status(200).json({ message: "Вышел из системы успешно" });
 	} catch (error) {
-		console.log("Error in logout controller", error.message);
-		res.status(500).json({ error: "Internal Server Error" });
+		console.log("Ошибка в контроллере выхода из системы", error.message);
+		res.status(500).json({ error: "Внутренняя ошибка сервера" });
 	}
 };

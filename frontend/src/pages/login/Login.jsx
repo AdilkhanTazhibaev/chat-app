@@ -24,11 +24,11 @@ const Login = () => {
 				<form onSubmit={handleSubmit}>
 					<div>
 						<label className='label p-2'>
-							<span className='text-base label-text'>Username</span>
+							<span className='text-base label-text'>Логин</span>
 						</label>
 						<input
 							type='text'
-							placeholder='Enter username'
+							placeholder='Введите логин'
 							className='w-full input input-bordered h-10'
 							value={username}
 							onChange={(e) => setUsername(e.target.value)}
@@ -37,23 +37,23 @@ const Login = () => {
 
 					<div>
 						<label className='label'>
-							<span className='text-base label-text'>Password</span>
+							<span className='text-base label-text'>Пароль</span>
 						</label>
 						<input
 							type='password'
-							placeholder='Enter Password'
+							placeholder='Введите пароль'
 							className='w-full input input-bordered h-10'
 							value={password}
 							onChange={(e) => setPassword(e.target.value)}
 						/>
 					</div>
 					<Link to='/signup' className='text-sm  hover:underline hover:text-blue-600 mt-2 inline-block'>
-						{"Don't"} have an account?
+						{"Нет"} есть учетная запись?
 					</Link>
 
 					<div>
 						<button className='btn btn-block btn-sm mt-2' disabled={loading}>
-							{loading ? <span className='loading loading-spinner '></span> : "Login"}
+							{loading ? <span className='loading loading-spinner '></span> : "Войти"}
 						</button>
 					</div>
 				</form>
